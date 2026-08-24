@@ -16,6 +16,7 @@ from PySide6.QtCore import (
     Slot,
 )
 
+from config.user_settings import APP_VERSION
 from ui.controller import TunerController, device_choices, device_label
 
 _FONTS = Path(__file__).resolve().parent / "fonts"
@@ -229,7 +230,7 @@ class TunerBackend(QObject):
         return device_label(self._c.settings, self._c.devices)
 
     def _version(self) -> str:
-        return "0.2.0"
+        return APP_VERSION
 
     showSettings = Property(bool, _show_settings, notify=settingsChanged)
     pickingDevice = Property(bool, _picking_device, notify=settingsChanged)

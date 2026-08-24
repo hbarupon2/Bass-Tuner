@@ -84,7 +84,7 @@ Item {
             height: 78
 
             Text {
-                text: backend.appVersion + " · MIT"
+                text: backend.appVersion + " · Apache-2.0"
                 color: "#b0b0b0"
                 font.family: root.fontMedium
                 font.pixelSize: 13

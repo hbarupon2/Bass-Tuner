@@ -10,7 +10,7 @@ from typing import Any
 
 from core.tuner_engine import TunerSmoother
 
-APP_VERSION = "0.2.0"
+APP_VERSION = "0.1.0"
 
 A4_MIN = 435
 A4_MAX = 445
