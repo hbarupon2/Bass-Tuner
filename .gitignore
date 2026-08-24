@@ -1,0 +1,73 @@
+# Virtualenvs
+.venv/
+venv/
+env/
+ENV/
+.env/
+
+# Bytecode / native
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Packaging
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+wheels/
+pip-wheel-metadata/
+.installed.cfg
+MANIFEST
+
+# Tests / coverage / linters
+.pytest_cache/
+.mypy_cache/
+.dmypy.json
+.ruff_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+.hypothesis/
+.cache/
+
+# Local env / secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+id_rsa
+id_rsa.pub
+
+# OS
+.DS_Store
+._*
+Thumbs.db
+
+# Logs
+*.log
+pip-log.txt
+
+# Generated UI frames (keep real mockups)
+ui/_*.png
+
+# IDEs / editors
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.cursor/
+.vs/
+*.swp
+*~
+.project
+.classpath
+.settings/
+nbproject/

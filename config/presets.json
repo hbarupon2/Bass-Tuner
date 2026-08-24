@@ -1,0 +1,22 @@
+{
+  "standard_4": {
+    "name": "Standard 4",
+    "strings": ["E1", "A1", "D2", "G2"]
+  },
+  "drop_d": {
+    "name": "Drop D",
+    "strings": ["D1", "A1", "D2", "G2"]
+  },
+  "half_step": {
+    "name": "Half Step Down",
+    "strings": ["Eb1", "Ab1", "Db2", "Gb2"]
+  },
+  "five_string": {
+    "name": "5-String",
+    "strings": ["B0", "E1", "A1", "D2", "G2"]
+  },
+  "six_string": {
+    "name": "6-String",
+    "strings": ["B0", "E1", "A1", "D2", "G2", "C3"]
+  }
+}
