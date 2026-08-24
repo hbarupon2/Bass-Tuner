@@ -56,6 +56,8 @@ pip-log.txt
 
 # Generated UI frames (keep real mockups)
 ui/_*.png
+ui/_lock_preview/
+ui/_compare/
 
 # IDEs / editors
 .idea/

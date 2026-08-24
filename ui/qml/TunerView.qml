@@ -481,10 +481,11 @@ Item {
                 anchors.bottom: parent.bottom
                 anchors.bottomMargin: Math.round(28 * root.sy)
                 spacing: Math.round(8 * root.sx)
-                height: Math.max(18, Math.round(22 * root.sy))
+                height: Math.max(20, Math.round(24 * root.sy))
 
                 Canvas {
                     id: lockMark
+                    objectName: "lockMark"
                     width: statusRow.height
                     height: statusRow.height
                     antialiasing: true
@@ -496,39 +497,47 @@ Item {
                     }
                     onPaint: {
                         const ctx = getContext("2d")
-                        const w = width
-                        const h = height
-                        ctx.clearRect(0, 0, w, h)
-                        ctx.strokeStyle = backend.locked ? "#3be85c" : "#f0880e"
-                        ctx.lineWidth = Math.max(1.8, w * 0.11)
+                        ctx.clearRect(0, 0, width, height)
+                        const locked = backend.locked
+                        const scale = width / 24
+                        ctx.save()
+                        ctx.scale(scale, scale)
+                        ctx.strokeStyle = locked ? "#3be85c" : "#f0880e"
+                        ctx.lineWidth = 2.2
                         ctx.lineCap = "round"
                         ctx.lineJoin = "round"
-                        const cx = w * 0.5
-                        const bodyTop = h * 0.48
-                        const bodyH = h * 0.42
-                        const bodyW = w * 0.62
-                        const bx = (w - bodyW) / 2
-                        const rad = Math.max(1.4, w * 0.08)
+
+                        // Lucide lock / unlock (24×24) — same shapes as 🔒 / 🔓 emoji.
+                        function strokeRoundRect(x, y, rw, rh, r) {
+                            ctx.beginPath()
+                            ctx.moveTo(x + r, y)
+                            ctx.lineTo(x + rw - r, y)
+                            ctx.quadraticCurveTo(x + rw, y, x + rw, y + r)
+                            ctx.lineTo(x + rw, y + rh - r)
+                            ctx.quadraticCurveTo(x + rw, y + rh, x + rw - r, y + rh)
+                            ctx.lineTo(x + r, y + rh)
+                            ctx.quadraticCurveTo(x, y + rh, x, y + rh - r)
+                            ctx.lineTo(x, y + r)
+                            ctx.quadraticCurveTo(x, y, x + r, y)
+                            ctx.closePath()
+                            ctx.stroke()
+                        }
+
+                        strokeRoundRect(3, 11, 18, 11, 2)
+
                         ctx.beginPath()
-                        ctx.moveTo(bx + rad, bodyTop)
-                        ctx.lineTo(bx + bodyW - rad, bodyTop)
-                        ctx.quadraticCurveTo(bx + bodyW, bodyTop, bx + bodyW, bodyTop + rad)
-                        ctx.lineTo(bx + bodyW, bodyTop + bodyH - rad)
-                        ctx.quadraticCurveTo(bx + bodyW, bodyTop + bodyH, bx + bodyW - rad, bodyTop + bodyH)
-                        ctx.lineTo(bx + rad, bodyTop + bodyH)
-                        ctx.quadraticCurveTo(bx, bodyTop + bodyH, bx, bodyTop + bodyH - rad)
-                        ctx.lineTo(bx, bodyTop + rad)
-                        ctx.quadraticCurveTo(bx, bodyTop, bx + rad, bodyTop)
-                        ctx.closePath()
-                        ctx.stroke()
-                        const arcR = w * 0.20
-                        ctx.beginPath()
-                        if (backend.locked) {
-                            ctx.arc(cx, bodyTop, arcR, Math.PI, 0, false)
+                        if (locked) {
+                            ctx.moveTo(7, 11)
+                            ctx.lineTo(7, 7)
+                            ctx.arc(12, 7, 5, Math.PI, 0, false)
+                            ctx.lineTo(17, 11)
                         } else {
-                            ctx.arc(cx + w * 0.06, bodyTop, arcR, Math.PI * 0.85, Math.PI * 1.92, false)
+                            ctx.moveTo(7, 10)
+                            ctx.lineTo(7, 7)
+                            ctx.arc(12, 7, 5, Math.PI, Math.atan2(-1, 4.9), false)
                         }
                         ctx.stroke()
+                        ctx.restore()
                     }
                 }
 
